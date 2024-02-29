@@ -29,28 +29,19 @@
         private void InitializeComponent()
         {
             getData_btn = new Button();
-            listBoxWeatherInfo = new ListBox();
             lbl_DateTime = new Label();
+            listView_Weather = new ListView();
             SuspendLayout();
             // 
             // getData_btn
             // 
-            getData_btn.Location = new Point(878, 289);
+            getData_btn.Location = new Point(613, 332);
             getData_btn.Name = "getData_btn";
             getData_btn.Size = new Size(135, 56);
             getData_btn.TabIndex = 0;
             getData_btn.Text = "取得天氣資料";
             getData_btn.UseVisualStyleBackColor = true;
             getData_btn.Click += getData_btn_Click;
-            // 
-            // listBoxWeatherInfo
-            // 
-            listBoxWeatherInfo.FormattingEnabled = true;
-            listBoxWeatherInfo.ItemHeight = 19;
-            listBoxWeatherInfo.Location = new Point(80, 123);
-            listBoxWeatherInfo.Name = "listBoxWeatherInfo";
-            listBoxWeatherInfo.Size = new Size(703, 441);
-            listBoxWeatherInfo.TabIndex = 1;
             // 
             // lbl_DateTime
             // 
@@ -61,13 +52,21 @@
             lbl_DateTime.TabIndex = 2;
             lbl_DateTime.Text = "當前日期時間";
             // 
+            // listView_Weather
+            // 
+            listView_Weather.Location = new Point(70, 92);
+            listView_Weather.Name = "listView_Weather";
+            listView_Weather.Size = new Size(414, 601);
+            listView_Weather.TabIndex = 3;
+            listView_Weather.UseCompatibleStateImageBehavior = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1444, 705);
+            Controls.Add(listView_Weather);
             Controls.Add(lbl_DateTime);
-            Controls.Add(listBoxWeatherInfo);
             Controls.Add(getData_btn);
             Name = "Form1";
             Text = "WeatherInfo_TW";
@@ -79,7 +78,7 @@
         #endregion
 
         private Button getData_btn;
-        private ListBox listBoxWeatherInfo;
         private Label lbl_DateTime;
+        private ListView listView_Weather;
     }
 }

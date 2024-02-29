@@ -16,7 +16,7 @@ namespace Weather_WinForms
         {
             UpdateDateTime();
         }
-        
+
         /// <summary>
         /// 取得當前日期時間
         /// </summary>
@@ -35,6 +35,15 @@ namespace Weather_WinForms
                 string uri = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-FB153F5B-564E-4E95-8593-938F29D5B004";
                 JArray jsondata = getJson(uri);
 
+                listView_Weather.View = View.Details;
+                listView_Weather.GridLines = true;
+                listView_Weather.LabelEdit = false;
+                listView_Weather.FullRowSelect = true;
+                listView_Weather.Columns.Add("地區", 100);
+                listView_Weather.Columns.Add("天氣", 100);
+                listView_Weather.Columns.Add("溫度", 100);
+                listView_Weather.Columns.Add("降雨機率", 100);
+
                 foreach (JObject data in jsondata)
                 {
                     string loactionname = (string)data["locationName"]; //地名
@@ -43,8 +52,12 @@ namespace Weather_WinForms
                     string mintemperature = (string)data["weatherElement"][2]["time"][0]["parameter"]["parameterName"]; //最低溫度
                     string maxtemperature = (string)data["weatherElement"][4]["time"][0]["parameter"]["parameterName"]; //最高溫度
 
-                    // 在這裡將資料顯示在表單上的控件中，例如：
-                    listBoxWeatherInfo.Items.Add($"{loactionname} 天氣:{weathdescrible} 溫度:{mintemperature}°c-{maxtemperature}°c 降雨機率:{pop}%");
+                    ListViewItem dto = new ListViewItem(loactionname);
+                    dto.SubItems.Add(weathdescrible); // 天氣
+                    dto.SubItems.Add($"{mintemperature}°c-{maxtemperature}°c"); // 溫度
+                    dto.SubItems.Add($"{pop}%"); // 降雨機率
+
+                    listView_Weather.Items.Add(dto); // 添加 ListViewItem 到 ListView
                 }
             }
             catch (Exception ex)
@@ -89,7 +102,7 @@ namespace Weather_WinForms
         /// <param name="e"></param>
         private void getData_btn_Click(object sender, EventArgs e)
         {
-            listBoxWeatherInfo.Items.Clear();
+            listView_Weather.Items.Clear();
             GetWeatherData();
         }
     }
