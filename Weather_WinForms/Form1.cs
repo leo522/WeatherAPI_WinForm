@@ -18,7 +18,7 @@ namespace Weather_WinForms
         }
 
         /// <summary>
-        /// ¨ú±o·í«e¤é´Á®É¶¡
+        /// å–å¾—ç•¶å‰æ—¥æœŸæ™‚é–“
         /// </summary>
         private void UpdateDateTime()
         {
@@ -26,38 +26,38 @@ namespace Weather_WinForms
         }
 
         /// <summary>
-        /// ³B²z¨ú¨ìªº¤Ñ®ğAPI¸ê®Æ
+        /// è™•ç†å–åˆ°çš„å¤©æ°£APIè³‡æ–™
         /// </summary>
         private void GetWeatherData()
         {
             try
             {
-                string uri = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-FB153F5B-564E-4E95-8593-938F29D5B004";
+                string uri = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-95FC4BA4-1CD9-46CC-838C-570CEE5379F5";
                 JArray jsondata = getJson(uri);
 
                 listView_Weather.View = View.Details;
                 listView_Weather.GridLines = true;
                 listView_Weather.LabelEdit = false;
                 listView_Weather.FullRowSelect = true;
-                listView_Weather.Columns.Add("¦a°Ï", 100);
-                listView_Weather.Columns.Add("¤Ñ®ğ", 100);
-                listView_Weather.Columns.Add("·Å«×", 100);
-                listView_Weather.Columns.Add("­°«B¾÷²v", 100);
+                listView_Weather.Columns.Add("åœ°å€", 100);
+                listView_Weather.Columns.Add("å¤©æ°£", 100);
+                listView_Weather.Columns.Add("æº«åº¦", 100);
+                listView_Weather.Columns.Add("é™é›¨æ©Ÿç‡", 100);
 
                 foreach (JObject data in jsondata)
                 {
-                    string loactionname = (string)data["locationName"]; //¦a¦W
-                    string weathdescrible = (string)data["weatherElement"][0]["time"][0]["parameter"]["parameterName"]; //¤Ñ®ğª¬ªp
-                    string pop = (string)data["weatherElement"][1]["time"][0]["parameter"]["parameterName"];  //­°«B¾÷²v
-                    string mintemperature = (string)data["weatherElement"][2]["time"][0]["parameter"]["parameterName"]; //³Ì§C·Å«×
-                    string maxtemperature = (string)data["weatherElement"][4]["time"][0]["parameter"]["parameterName"]; //³Ì°ª·Å«×
+                    string loactionname = (string)data["locationName"]; //åœ°å
+                    string weathdescrible = (string)data["weatherElement"][0]["time"][0]["parameter"]["parameterName"]; //å¤©æ°£ç‹€æ³
+                    string pop = (string)data["weatherElement"][1]["time"][0]["parameter"]["parameterName"];  //é™é›¨æ©Ÿç‡
+                    string mintemperature = (string)data["weatherElement"][2]["time"][0]["parameter"]["parameterName"]; //æœ€ä½æº«åº¦
+                    string maxtemperature = (string)data["weatherElement"][4]["time"][0]["parameter"]["parameterName"]; //æœ€é«˜æº«åº¦
 
                     ListViewItem dto = new ListViewItem(loactionname);
-                    dto.SubItems.Add(weathdescrible); // ¤Ñ®ğ
-                    dto.SubItems.Add($"{mintemperature}¢Xc-{maxtemperature}¢Xc"); // ·Å«×
-                    dto.SubItems.Add($"{pop}%"); // ­°«B¾÷²v
+                    dto.SubItems.Add(weathdescrible); // å¤©æ°£
+                    dto.SubItems.Add($"{mintemperature}Â°c-{maxtemperature}Â°c"); // æº«åº¦
+                    dto.SubItems.Add($"{pop}%"); // é™é›¨æ©Ÿç‡
 
-                    listView_Weather.Items.Add(dto); // ²K¥[ ListViewItem ¨ì ListView
+                    listView_Weather.Items.Add(dto); // æ·»åŠ  ListViewItem åˆ° ListView
                 }
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace Weather_WinForms
         }
 
         /// <summary>
-        /// ±q®ğ¶H¸p¨ú±oAPI¸ê®Æ
+        /// å¾æ°£è±¡ç½²å–å¾—APIè³‡æ–™
         /// </summary>
         /// <param name="uri"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace Weather_WinForms
         }
 
         /// <summary>
-        /// «ö¶sÄ²µo¨ú±oAPI
+        /// æŒ‰éˆ•è§¸ç™¼å–å¾—API
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
